@@ -1,0 +1,80 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[utf8]{inputenc}
+
+% hides or overrides some titling semantics
+\newcommand{\subject}[1]{\title{#1}}
+\newcommand{\repository}[1]{\author{#1}}
+\newcommand{\topic}[1]{\date{#1}}
+
+\subject{Matemática Básica}
+\repository{(https://github.com/Mazuh/MyNotebook-Math)}
+\topic{Demonstração da Fórmula de Bhaskara}
+
+\begin{document}
+
+\maketitle
+
+Seja:\\
+$a, b, c \in \mathbb{R}$ constantes quaisquer,\\
+$a \neq 0$,\\
+$x$ é incógnita.
+
+É definida a chamada equação de segundo grau:
+
+$$ {\bf ax^2 + bx + c = 0} $$
+
+Pra início, objetivando isolar o $x$ no membro esquerdo, divido tudo
+por $a$, simplificando o coeficiente de maior grau.
+
+$$ x^2 + \frac{bx}{a} + \frac{c}{a} = 0 $$
+$$ x^2 + \frac{bx}{a} = -\frac{c}{a} $$
+
+Aplico a técnica de completar quadrados no membro esquerdo.
+
+$$ \left(x + \frac{b}{2a}\right)^2 - \left(\frac{b}{2a}\right)^2 =
+- \frac{c}{a} $$
+
+Reorganizo.
+
+$$ \left(x + \frac{b}{2a}\right)^2 
+= \left(\frac{b}{2a}\right)^2 - \frac{c}{a} $$
+$$ \left(x + \frac{b}{2a}\right)^2 
+= \frac{b^2}{4a^2} - \frac{c}{a} $$
+
+Executo a adição de frações (o produto dos denominadores serve
+como denominador comum).
+
+$$ \left(x + \frac{b}{2a}\right)^2 
+= \frac{-4a^2c + ab^2}{4a^3} $$
+
+Há o fator comum $a$ nos numeradores e denominador. Elimino-o e reorganizo por comutatividade.
+
+$$ \left(x + \frac{b}{2a}\right)^2 
+= \frac{-4ac + b^2}{4a^2} $$
+$$ \left(x + \frac{b}{2a}\right)^2 
+= \frac{b^2 - 4ac}{4a^2} $$
+
+Construo que: $ {\bf \Delta = b^2 - 4ac } $. E substituo nos cálculos.
+
+$$ \left(x + \frac{b}{2a}\right)^2 
+= \frac{\Delta}{4a^2} $$
+
+Voltando ao membro esquerdo, ainda é preciso isolar mais coisas do $x$. Aplico a raíz quadrada em toda a equação.
+
+$$ \sqrt{\left(x + \frac{b}{2a}\right)^2} 
+= \sqrt{\frac{\Delta}{4a^2}} $$
+$$ x + \frac{b}{2a}
+= \frac{\pm\sqrt{\Delta}}{2a} $$
+
+Reorganizo, pra finalmente ter o $x$ isolado. E aplico a adição de frações de mesmo denominador. Chegando à (como diz os brasileiros) Fórmula de Bhaskara.
+
+$$ x
+= - \frac{b}{2a} + \frac{\pm\sqrt{\Delta}}{2a}$$
+$$ {\bf x
+= \frac{-b \pm\sqrt{\Delta}}{2a}}$$
+
+\end{document}
