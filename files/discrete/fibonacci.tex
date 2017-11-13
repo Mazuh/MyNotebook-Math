@@ -1,0 +1,282 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[utf8]{inputenc}
+
+% hides or overrides some titling semantics
+\newcommand{\subject}[1]{\title{#1}}
+\newcommand{\repository}[1]{\author{#1}}
+\newcommand{\topic}[1]{\date{#1}}
+
+\subject{Matemática Discreta}
+\repository{(https://github.com/Mazuh/MyNotebook-Math)}
+\topic{\bf Demonstração da Forma Fechada de Fibonacci}
+
+\begin{document}
+
+\maketitle
+
+A sequência de Fibonacci é gerada por uma {\bf relação de recorrência},
+cujo n-ésimo termo é dado por f(n) tal que:
+
+\begin{align*}
+&\boldsymbol{ f(0) = 0 };\\
+&\boldsymbol{ f(1) = 1 };
+\end{align*}
+\begin{align}
+\boldsymbol{ f(n) = f(n-1) + f(n-2) }, se\ \boldsymbol{ n > 1 }
+\end{align}
+
+Observa-se que essa relação é:\\
+- {\bf de segunda ordem}, recorrendo aos dois últimos termos;\\
+- {\bf linear}, termos recorrentes não fazem produto e
+a maior potência é 1;\\
+- {\bf homogênea}, o coeficiente independente de termo
+recorrente é 0.
+
+Por causa dessas características, talvez seja possível encontrar 
+sistematicamente uma solução para essa recorrência usando a
+seguinte igualdade:
+
+$$
+f(n) = r^n
+$$
+
+Que é equivalente a:
+
+$$
+f(n) = r^n \implies f(n-1) = r^{n-1} \implies f(n-2) = r^{n-2}\\
+$$
+
+E essa técnica nos dá a seguinte {\bf equação característica}:
+
+$$
+r^n = r^{n-1} + r^{n-2}
+$$
+
+(que pode ser simplificada dividindo tudo pelo $r$ de menor potência)
+
+$$
+\frac{r^{n}}{r^{n-2}} = \frac{r^{n-1}}{r^{n-2}} + \frac{r^{n-2}}{r^{n-2}}
+$$
+
+(e usaremos a propriedade de divisão de potênciações)
+
+$$
+r^{n - (n-2)} = r^{n-1 - (n-2)} + r^{n-2 - (n-2)}
+$$
+$$
+r^{{\bf n-n}+2} = r^{{\bf n}-1{\bf-n}+2} + r^{\bf n-2-n+2}
+$$
+$$
+r^2 = r^1 + r^0
+$$
+$$
+r^2 = r + 1
+$$
+
+Ao trazermos tudo ao membro esquerdo, a equação característica fica:
+\begin{align}
+{\bf r^2 - r - 1 = 0 }
+\end{align}
+
+Dizemos que essa equação (2) é característica da recorrência (1) pois
+dependemos de suas raízes $r$ para encontrar uma solução à
+recorrência $f$. Dito isso, pela fórmula quadrática:
+
+$$
+\Delta = (-1)^2 - 4(1)(-1)
+$$
+$$
+= 1 + 4
+$$
+$$
+= 5
+$$
+$$
+r = \frac{-(-1) \pm\sqrt{\Delta}}{2(1)}
+$$
+$$
+= \frac{1 \pm\sqrt{5}}{2}
+$$
+
+Isso quer dizer que (2) tem duas raízes diferentes:
+
+$$
+r_1 = \frac{1 + \sqrt{5}}{2}
+$$
+$$
+r_2 = \frac{1 - \sqrt{5}}{2}
+$$
+
+
+Por $r_1\neq r_2$, a equação característica (2) implicará
+na seguinte {\bf solução} para a recorrência (1):
+
+$$
+f(n) = a*(r_1)^n +b*(r_2)^n
+\text{, sendo $a$ e $b$ constantes}
+$$
+
+Ou seja, a solução seria:
+
+\begin{align}
+f(n) =
+a\left( \frac{1 + \sqrt{5}}{2} \right)^n
++
+b\left( \frac{1 - \sqrt{5}}{2} \right)^n
+\end{align}
+
+Apesar de $a$ e $b$ serem constantes, tais valores ainda nos
+são desconhecidos. E uma forma de encontrá-los seria criando
+um sistema de equações composto por $f(0)$ e $f(1)$,
+para garantir que a solução (3) satisfaça ambos os casos base
+de (1) simultaneamente.
+Logo, temos:
+
+$$
+\begin{cases}
+a\left( \frac{1 + \sqrt{5}}{2} \right)^{\bf 0}
++
+b\left( \frac{1 - \sqrt{5}}{2} \right)^{\bf 0}
+=
+f({\bf 0})
+\\
+a\left( \frac{1 + \sqrt{5}}{2} \right)^{\bf 1}
++
+b\left( \frac{1 - \sqrt{5}}{2} \right)^{\bf 1}
+=
+f({\bf 1})
+\end{cases}
+$$
+
+(e, por (1), já sabemos qual a imagem de $f$ quando $n=0$ e $n=1$)
+
+$$
+\begin{cases}
+a(1)
++
+b(1)
+=
+0
+\\
+a\left( \frac{1 + \sqrt{5}}{2} \right)
++
+b\left( \frac{1 - \sqrt{5}}{2} \right)
+=
+1
+\end{cases}
+$$
+
+\begin{align}
+\begin{cases}
+{\bf a + b = 0}
+\\
+{\bf a\left( \frac{1 + \sqrt{5}}{2} \right)
++
+b\left( \frac{1 - \sqrt{5}}{2} \right)
+=
+1}
+\end{cases}
+\end{align}
+
+Resolveremos esse sistema (4) usando a técnica de {\bf substituição}.
+A começar pela primeira equação:
+
+$$
+a + b = 0
+$$
+$$
+{\bf a = -b}
+$$
+
+Usaremos essa igualdade para retirar $a$ da segunda equação:
+
+$$
+{\bf -b}\left( \frac{1 + \sqrt{5}}{2} \right)
++
+b\left( \frac{1 - \sqrt{5}}{2} \right)
+=
+1
+$$
+
+(e deixaremos o fator comum $b$ em evidência para simplificar)
+
+$$
+b\left[ - \left( \frac{1 + \sqrt{5}}{2} \right)
++
+\left( \frac{1 - \sqrt{5}}{2} \right) \right]
+=
+1
+$$
+
+(finalizaremos executando a soma de frações e isolando $b$)
+
+
+$$
+b\left[ \frac{-(1 + \sqrt{5}) + (1 - \sqrt{5}) }{2} \right] = 1
+$$
+$$
+b\left[ \frac{{\bf - 1} - \sqrt{5}\ {\bf + 1} - \sqrt{5} }{2} \right] = 1
+$$
+$$
+b\left[ \frac{- \sqrt{5} - \sqrt{5} }{2} \right] = 1
+$$
+$$
+b\left[ \frac{- {\bf 2}\sqrt{5} }{\bf 2} \right] = 1
+$$
+$$
+b\left[ - \sqrt{5} \right] = 1
+$$
+$$
+{\bf b = -\frac{1}{\sqrt{5}}}
+$$
+
+Agora $b$ teve seu valor descoberto, e será usado na
+primeira equação de (4) para encontrar $a$:
+
+$$
+a = -b
+$$
+$$
+a = -\left( - \frac{1}{\sqrt{5}} \right)
+$$
+$$
+{\bf a = \frac{1}{\sqrt{5}}}
+$$
+
+Agora, já sabemos os valores das constantes $a$ e $b$ da função (3)
+e das raízes $r_1$ e $r_2$ da característica (2). São dados o
+suficiente para finalizar a solução (3).
+Temos:
+
+$$
+f(n) =
+\left( \frac{1}{\sqrt{5}} \right)
+\left( \frac{1 + \sqrt{5}}{2} \right)^n
++
+\left( -\frac{1}{\sqrt{5}} \right)
+\left( \frac{1 - \sqrt{5}}{2} \right)^n
+$$
+
+(finalizamos pondo fator comum $\frac{1}{\sqrt{5}}$ em
+evidência para simplificar)
+
+
+$$
+\bf
+f(n) =
+\frac{1}{\sqrt{5}}
+\left[
+\left( \frac{1 + \sqrt{5}}{2} \right)^n
+-
+\left( \frac{1 - \sqrt{5}}{2} \right)^n
+\right]
+$$
+
+Esta é a {\bf solução} da relação (1) e pode ser provada
+por indução.
+
+\end{document}
